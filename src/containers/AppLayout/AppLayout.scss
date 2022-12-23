@@ -1,0 +1,46 @@
+%layout-width {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 15px;
+}
+
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+
+    & header {
+        @extend %layout-width;
+        display: flex;
+        justify-content: space-between;
+        height: 82px;
+        display: flex;
+        align-items: center;
+
+        & > img {
+            width: 254px;
+        }
+    }
+
+    &__banner {
+        background-image: url('/static/images/theme/banner.jpg');
+        background-size: cover;
+        padding: 26px 0;
+        width: 100%;
+
+        & > div {
+            @extend %layout-width;
+            margin: auto;
+            color: $white;
+        }
+    }
+
+    &__content {
+        @extend %layout-width;
+        margin: auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+}

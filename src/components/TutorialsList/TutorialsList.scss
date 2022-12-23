@@ -1,0 +1,24 @@
+.tutorials-listing {
+    margin: auto;
+    width: 880px;
+    max-width: 100vw;
+    margin-bottom: 80px;
+    padding: 0 20px;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    @include max(sm) {
+        &__list {
+            flex-direction: column;
+
+            & > * {
+                width: 100% !important;
+            }
+        }
+    }
+}

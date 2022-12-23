@@ -1,0 +1,1 @@
+export {LocalizedLabel} from './LocalizedLabel';

@@ -1,0 +1,28 @@
+.language-dropdown {
+    z-index: $topIndex;
+    -webkit-tap-highlight-color: transparent;
+    &__head {
+        display: flex;
+        align-items: center;
+        gap: size(1.5);
+        text-transform: capitalize;
+    }
+    &__menu {
+        display: flex;
+        flex-direction: column;
+    }
+    &__item {
+        display: flex;
+        gap: size(3);
+        align-items: center;
+        cursor: pointer;
+        padding: size(3) size(5) !important;
+    }
+    .flag-img {
+        border-radius: size(1);
+        width: size(6);
+    }
+    .dropdown__menu {
+        width: size(40);
+    }
+}

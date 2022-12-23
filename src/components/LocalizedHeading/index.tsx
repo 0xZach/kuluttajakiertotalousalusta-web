@@ -1,0 +1,1 @@
+export {LocalizedHeading} from './LocalizedHeading';

@@ -1,0 +1,31 @@
+@import 'leaflet/dist/leaflet.css';
+
+.results-map {
+    position: relative;
+
+    & > .leaflet-container {
+        width: 100%;
+        height: 600px;
+        z-index: 0;
+    }
+
+    &__heading {
+        @extend %layout-width;
+        margin-top: 20px;
+        margin: 0 auto 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & > button {
+            color: $bondBlue;
+            text-decoration: underline;
+            font-size: 20px;
+        }
+    }
+
+    & > .slider__wrapper {
+        position: absolute;
+        bottom: 20px;
+    }
+}

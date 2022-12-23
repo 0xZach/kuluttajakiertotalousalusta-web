@@ -1,0 +1,94 @@
+{
+    "KEYWORDS": {
+        "DETAILS": "Tuote",
+        "ITEM": "Kohde",
+        "SERVICES": "Tutustu sopiviin palveluihin",
+        "PROBLEM_TO_FIX": "Tuotteessa oleva ongelma",
+        "RESULT": "Tässä sinulle ratkaisu!",
+        "NO_RESULTS_FOUND": "Ratkaisua ei löytynyt!"
+    },
+    "LANGUAGES": {
+        "EN-GB": "Englanti",
+        "FI-FI": "Suomi",
+        "SV-SE": "Ruotsi"
+    },
+    "RESPONSE": {
+        "DEFAULT": {
+            "ERROR": "Tuntematon virhe"
+        }
+    },
+    "SEO": {
+        "HOME": {
+            "TITLE": "Kotisivu"
+        },
+        "RESULTS": {
+            "TITLE": "Tulokset"
+        }
+    },
+    "HOME_PAGE": {
+        "HEADING": "Tervetuloa korjaamaan ja huoltamaan aarteitasi!",
+        "SUBTITLES": [
+            "Tältä sivustolta löydät rikkoutuneelle tai kuluneelle tavarallesi korjaajan, on kyse sitten repsottavista farkuista tai rikkoutuneesta sohvapöydästä. Sivusto tarjoaa myös ohjeita, joiden avulla voit korjata ja huoltaa tavaroitasi itse."
+        ],
+        "WANT_TO_FIX": "Etsitään ratkaisu ongelmaasi",
+        "SHARE_EXPERIENCE": "Haluan jakaa kokemukseni",
+        "IMPROVE_BUSINESS": "Haluan parantaa liiketoimintaani"
+    },
+    "MOTIVE": {
+        "HEADING": "Mitä haluat tehdä?",
+        "WANT_TO_FIX": {
+            "SUBTITLES": "",
+            "BUTTON": "Löydä ratkaisu ongelmaasi",
+            "ITEMS": {
+                "FIX_BROKEN_ITEM": "Korjaa juuri rikkoutunut tärkeä esine",
+                "FIX_AND_USE_CLOSET_ITEMS": "Korjaa ja käytä kaapissani tai laatikossani olevia esineitä.",
+                "DECIDE_TO_DISCARD_ITEM": "Päätä, heitätkö esineen pois",
+                "DECIDE_TO_BUY_USED_ITEM": "Päätä, ostatko käytetyn tuotteen",
+                "GET_IDEAS_ON_AFFORDABLE_LIVING": "Hanki ideoita edullisempaan asumiseen",
+                "GET_IDEAS_ON_SUSTAINABLE_LIVING": "Hanki ideoita kestävämpään elämään",
+                "FIND_SOLUTION_HERE": "Löydä ratkaisu täältä (ei löytynyt muualta)"
+            }
+        },
+        "SHARE_EXPERIENCE": {
+            "SUBTITLES": "Asiantuntemuksen jakamista tuetaan palvelun tulevissa versioissa.",
+            "BUTTON": "Löydä nykyinen ratkaisu",
+            "ITEMS": {
+                "HELP_OTHERS": "Haluan auttaa muita",
+                "SHARE_SOLUTION": "Löysin ratkaisun ja haluan jakaa sen",
+                "CHALLENGE_MYSELF_OR_GET_RECOGNITION": "Haluan haastaa itseni tai saada tunnustusta",
+                "WAS_ASKED_TO_DO_THIS": "Minua pyydettiin tekemään tämä",
+                "EARN_MONEY": "Haluan ansaita rahaa",
+                "ADVISE_ON_AFFORDABLE_LIVING": "Jaa neuvoja edullisempaan asumiseen",
+                "ADVISE_ON_SUSTAINABLE_LIVING": "Jaa neuvoja kestävämpään elämään"
+            }
+        },
+        "IMPROVE_BUSINESS": {
+            "SUBTITLES": "Palveluidesi lisäämistä tuetaan palvelun tulevissa versioissa.",
+            "BUTTON": "Löydä nykyinen ratkaisu",
+            "ITEMS": {
+                "GET_MY_BUSINESS_FOUND": "Minun asiani löytyy",
+                "CUSTOMERS_DIAGNOSIS": "Asiakkaat tekevät diagnostiikkaa",
+                "FIND_CUSTOMERS": "Löydä uusia asiakkaita",
+                "FIND_SERVICE_DEMAND": "Löydä uusi palvelukysyntä",
+                "FIND_SOLUTIONS_FOR_CUSTOMERS": "Löydän ratkaisuja asiakkaitani varten",
+                "DEVELOP_COMPANY_REPUTATION": "Kehittää yritykseni mainetta"
+            }
+        }
+    },
+    "CATEGORY": {
+        "SELECT_CATEGORIES": "Mitä haluat korjata tai huoltaa?",
+        "SELECT_ITEMS": "Minkälainen tuote on kyseessä?",
+        "SELECT_PROBLEM": "Mikä ongelma tuotteessa on?"
+    },
+    "MAKE_GOOGLE_SEARCH": "Hae lisää tuloksia Google-haun avulla",
+    "HOW_TO": "Miten korjata",
+    "TUTORIALS": "Tee se itse -ohjeet",
+    "LIST_VIEW": "Katso palvelut luettelonäkymässä",
+    "SERVICES": {
+        "HEADING": "Ehdotetut palvelut",
+        "TITLE": "Palvelut"
+    },
+    "ADMIN_PAGE": {
+        "TITLE": "Admin"
+    }
+}

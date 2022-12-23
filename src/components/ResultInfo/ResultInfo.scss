@@ -1,0 +1,18 @@
+.result-info {
+    @extend %layout-width;
+    padding: 40px 15px;
+    margin: 0 auto;
+    &__item,
+    &__problem {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+    }
+    & > * {
+        border-bottom: 1px solid $lightGrey;
+        padding-bottom: 8px;
+    }
+    h3{
+        padding-bottom: 16px;
+    }
+}

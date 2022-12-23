@@ -1,0 +1,77 @@
+.help-text {
+    color: $red;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 2px;
+    font-size: $fontXXS;
+    line-height: 1;
+    background-color: rgba($white, 0.6);
+    pointer-events: none;
+    z-index: $bottomIndex1;
+    padding: 0 2px 2px;
+    border-radius: 4px;
+}
+
+.form-field-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    & > label {
+        display: inline-block;
+        margin-bottom: size(2);
+        white-space: nowrap;
+        @extend %text-ellipsis;
+        font-size: $fontXXS;
+    }
+    & > span {
+        @extend .help-text;
+    }
+    .form-field {
+        border: $borderGray;
+        border-radius: $spacing;
+        padding: size(1.5) size(2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: size(2);
+        position: relative;
+        input,
+        textarea {
+            width: 100%;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            font-size: $fontXXS;
+            white-space: pre-wrap;
+            @extend %text-ellipsis;
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                transition: background-color 5000s ease-in-out 0s;
+            }
+        }
+        & > span {
+            font-size: $fontXXS;
+            @extend %text-ellipsis;
+            white-space: nowrap;
+        }
+        & > svg {
+            width: size(4.5);
+        }
+        &.placeholder > span {
+            color: rgba($black, 0.6);
+        }
+    }
+    &.required > label::after {
+        content: ' *';
+    }
+    &.error {
+        & > label::after {
+            color: $red;
+        }
+        .form-field {
+            border-color: rgba($red, 0.6);
+        }
+    }
+}

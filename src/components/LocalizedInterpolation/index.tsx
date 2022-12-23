@@ -1,0 +1,1 @@
+export {LocalizedInterpolation} from './LocalizedInterpolation';

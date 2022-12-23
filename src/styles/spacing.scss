@@ -1,0 +1,73 @@
+$maxSpacing: 50;
+$spacing: 4px;
+
+@function size($i) {
+    @return $i * $spacing;
+}
+
+@for $i from 0 through $maxSpacing {
+    .pd-#{$i} {
+        padding: size($i);
+    }
+    .pd-l-#{$i} {
+        padding-left: size($i);
+    }
+    .pd-r-#{$i} {
+        padding-right: size($i);
+    }
+    .pd-t-#{$i} {
+        padding-top: size($i);
+    }
+    .pd-b-#{$i} {
+        padding-bottom: size($i);
+    }
+    .pd-h-#{$i} {
+        padding-right: size($i);
+        padding-left: size($i);
+    }
+    .pd-v-#{$i} {
+        padding-top: size($i);
+        padding-bottom: size($i);
+    }
+}
+
+@for $i from 0 through $maxSpacing {
+    .mg-#{$i} {
+        margin: size($i);
+    }
+    .mg-l-#{$i} {
+        margin-left: size($i);
+    }
+    .mg-r-#{$i} {
+        margin-right: size($i);
+    }
+    .mg-t-#{$i} {
+        margin-top: size($i);
+    }
+    .mg-b-#{$i} {
+        margin-bottom: size($i);
+    }
+    .mg-h-#{$i} {
+        margin-right: size($i);
+        margin-left: size($i);
+    }
+    .mg-v-#{$i} {
+        margin-top: size($i);
+        margin-bottom: size($i);
+    }
+}
+
+.mg-h-auto {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pd-v-page {
+    padding: size(12) 0;
+    @include max(md) {
+        padding: size(9) 0;
+    }
+    @include max(sm) {
+        padding: size(5) 0;
+    }
+}

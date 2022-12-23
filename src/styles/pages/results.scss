@@ -1,0 +1,40 @@
+.results-page {
+    .app-layout__content {
+        max-width: unset;
+        padding: 0;
+    }
+
+    &__search-buttons {
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        & > a {
+            color: $bondBlue;
+            background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 2px, transparent 3px) 0% 0%/5px 5px
+                    no-repeat,
+                radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 2px, transparent 3px) 100% 0%/5px 5px no-repeat,
+                radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 2px, transparent 3px) 0% 100%/5px 5px no-repeat,
+                radial-gradient(circle at 0 0, #ffffff 0, #ffffff 2px, transparent 3px) 100% 100%/5px 5px no-repeat,
+                linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px) calc(100% - 10px) no-repeat,
+                linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px) calc(100% - 4px) no-repeat,
+                linear-gradient(#0789ab 30%, #5710d5 60%);
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: content-box;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            & > img {
+                width: 24px;
+                border-radius: 4px;
+                border: 1px solid rgba($gray, 0.5);
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "KEYWORDS": {
+        "DETAILS": "Details",
+        "ITEM": "Item",
+        "SERVICES": "Services",
+        "PROBLEM_TO_FIX": "Problem to fix",
+        "RESULT": "Here's the solution!",
+        "NO_RESULTS_FOUND": "No Results Found!"
+    },
+    "LANGUAGES": {
+        "EN-GB": "English",
+        "FI-FI": "Finnish",
+        "SV-SE": "Swedish"
+    },
+    "RESPONSE": {
+        "DEFAULT": {
+            "ERROR": "Unknown error"
+        }
+    },
+    "SEO": {
+        "HOME": {
+            "TITLE": "Homepage"
+        },
+        "RESULTS": {
+            "TITLE": "Results"
+        }
+    },
+    "HOME_PAGE": {
+        "HEADING": "Welcome to fix and maintain your treasures!",
+        "SUBTITLES": [
+            "On this site you will find a repair service for your broken or worn out product, whether it is ripp-off jeans or a broken coffee table. The site also offers DIY instructions to help you fix and maintain your belongings yourself."
+        ],
+        "WANT_TO_FIX": "Let's find a solution to your problem",
+        "SHARE_EXPERIENCE": "I want to share my experience",
+        "IMPROVE_BUSINESS": "I want to improve my business"
+    },
+    "MOTIVE": {
+        "HEADING": "What do you want to do?",
+        "WANT_TO_FIX": {
+            "SUBTITLES": "",
+            "BUTTON": "Find solution to your problem",
+            "ITEMS": {
+                "FIX_BROKEN_ITEM": "Fix an important item that just broke",
+                "FIX_AND_USE_CLOSET_ITEMS": "Fix and use items in my closet or drawer",
+                "DECIDE_TO_DISCARD_ITEM": "Decide whether to throw away an item",
+                "DECIDE_TO_BUY_USED_ITEM": "Decide whether to buy a used item",
+                "GET_IDEAS_ON_AFFORDABLE_LIVING": "Get ideas on more affordable living",
+                "GET_IDEAS_ON_SUSTAINABLE_LIVING": "Get ideas on more sustainable living",
+                "FIND_SOLUTION_HERE": "Find solution here (did not find elsewhere)"
+            }
+        },
+        "SHARE_EXPERIENCE": {
+            "SUBTITLES": "Sharing your expertise will be supported in future versions of the service",
+            "BUTTON": "Find current solution",
+            "ITEMS": {
+                "HELP_OTHERS": "I want to help others",
+                "SHARE_SOLUTION": "I found a solution and want to share it",
+                "CHALLENGE_MYSELF_OR_GET_RECOGNITION": "I want to challenge myself or get recognition",
+                "WAS_ASKED_TO_DO_THIS": "I was asked to do this",
+                "EARN_MONEY": "I want to earn money",
+                "ADVISE_ON_AFFORDABLE_LIVING": "Share advice on more affordable living",
+                "ADVISE_ON_SUSTAINABLE_LIVING": "Share advice on more sustainable living"
+            }
+        },
+        "IMPROVE_BUSINESS": {
+            "SUBTITLES": "Adding your services will be supported in future versions of the service",
+            "BUTTON": "Find current solution",
+            "ITEMS": {
+                "GET_MY_BUSINESS_FOUND": "My business to be found",
+                "CUSTOMERS_DIAGNOSIS": "Customers to do diagnostics",
+                "FIND_CUSTOMERS": "Find new customers",
+                "FIND_SERVICE_DEMAND": "Find new service demand",
+                "FIND_SOLUTIONS_FOR_CUSTOMERS": "Find solutions for my customers",
+                "DEVELOP_COMPANY_REPUTATION": "Develop my company reputation"
+            }
+        }
+    },
+    "CATEGORY": {
+        "SELECT_CATEGORIES": "What do you want to fix or maintain?",
+        "SELECT_ITEMS": "What kind of product is it?",
+        "SELECT_PROBLEM": "What is the problem with the product?"
+    },
+    "MAKE_GOOGLE_SEARCH": "Make Google Search",
+    "HOW_TO": "How to fix",
+    "TUTORIALS": "DIY instructions",
+    "LIST_VIEW": "List View",
+    "SERVICES": {
+        "HEADING": "Suggested Services",
+        "TITLE": "Services"
+    },
+    "ADMIN_PAGE": {
+        "TITLE": "Admin"
+    }
+}

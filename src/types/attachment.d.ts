@@ -1,0 +1,3 @@
+interface IAttachmentFile {
+    url: string;
+}

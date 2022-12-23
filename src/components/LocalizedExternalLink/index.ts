@@ -1,0 +1,1 @@
+export {LocalizedExternalLink} from './LocalizedExternalLink';

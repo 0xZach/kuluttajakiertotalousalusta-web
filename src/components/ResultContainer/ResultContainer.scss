@@ -1,0 +1,9 @@
+.result-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 100px;
+    @include max(sm) {
+        padding: 0px 12px 0px 12px;
+    }
+}

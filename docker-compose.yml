@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    prod:
+        build:
+            context: .
+            dockerfile: 'dockerbuildweb.txt'
+        ports:
+            - '3002:3002'
+        volumes:
+            - '.:/webappcode:rw'
+        command: 'bash -c "npm run build && npm start"'
+
+    dev:
+        build:
+            context: .
+            dockerfile: 'dockerbuildweb.txt'
+        ports:
+            - '3000:3000'
+        volumes:
+            - '.:/webappcode:rw'
+        command: 'npm run dev'
+    
+    stage:
+        build:
+            context: .
+            dockerfile: 'dockerbuildweb.txt'
+        ports: 
+            - '3001:3001'
+        volumes:
+            - '.:/webappcode:rw'
+        command: 'npm run stage'

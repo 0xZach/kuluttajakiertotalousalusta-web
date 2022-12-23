@@ -1,0 +1,60 @@
+$defaultGridGap: size(3);
+
+@function percent($num) {
+    @return calc(100% / $num);
+}
+@function numOfGaps($num) {
+    @return $num - 1;
+}
+@function totalGap($numOfGaps, $gap: $defaultGridGap) {
+    @return $numOfGaps * $gap;
+}
+@function gapPerItem($totalGap, $num) {
+    @return calc($totalGap / $num);
+}
+@function itemWidth($percent, $gapPerItem: defaultGridGap / 2) {
+    @return calc($percent - $gapPerItem);
+}
+@function width($num, $gap: $defaultGridGap) {
+    @return itemWidth(percent($num), gapPerItem(totalGap(numOfGaps($num), $gap), $num));
+}
+
+.grid {
+    display: flex;
+    column-gap: size(3);
+    row-gap: size(6);
+    flex-wrap: wrap;
+    & > * {
+        width: width(1);
+    }
+    .quarter {
+        width: width(4);
+    }
+    .one-third {
+        width: width(3);
+    }
+    .half {
+        width: width(2);
+    }
+    .two-third {
+        width: itemWidth(66.66%);
+    }
+    .three-fourth {
+        width: itemWidth(75%);
+    }
+    &.responsive {
+        .quarter {
+            @include max(md) {
+                width: width(3);
+            }
+            @include max(sm) {
+                width: width(2);
+            }
+            @include max(xs) {
+                margin: 0 auto;
+                width: width(1);
+                max-width: 400px;
+            }
+        }
+    }
+}

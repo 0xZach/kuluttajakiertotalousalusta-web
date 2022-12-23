@@ -1,0 +1,7 @@
+{
+    "APP_ENV": "dev",
+    "GOOGLE_TAG_MANAGER_KEY": "",
+    "APP_URL": "https://kukita.progstream.com",
+    "OSM_TILES_SERVER": "https://osm.progstream.com/tile/{z}/{x}/{y}.png",
+    "OSM_TILES_BASE_URL": "https://osm.progstream.com"
+}

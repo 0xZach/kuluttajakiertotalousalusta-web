@@ -1,0 +1,51 @@
+.home-page {
+    &__banner {
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        line-height: 24px;
+
+        & > h1 {
+            line-height: 42px;
+        }
+
+        @include max(xs) {
+            min-height: unset;
+            & > span {
+                display: none;
+            }
+        }
+    }
+
+    &__content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+
+        * {
+            color: $bondBlue;
+        }
+
+        & > button {
+            @extend %app-lg-button;
+        }
+    }
+
+    &__mobile-content {
+        width: 100%;
+        max-width: 90vw;
+        margin: auto;
+        margin-top: 15px;
+        font-size: $fontXXS;
+        line-height: 19px;
+        font-weight: 600;
+
+        @include min(sm) {
+            display: none;
+        }
+    }
+}

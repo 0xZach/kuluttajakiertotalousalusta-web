@@ -1,0 +1,52 @@
+.form {
+    @extend .grid;
+    max-width: 900px !important;
+    & > .large {
+        width: width(1);
+    }
+    & > .medium {
+        width: width(2);
+    }
+    & > h2 {
+        color: $jungleGreen;
+        text-align: center;
+        font-weight: bold;
+        text-align: center;
+    }
+    & > h5 {
+        font-weight: bold;
+        border-bottom: $borderLightGray;
+        padding-bottom: size(4);
+        margin-top: size(3);
+        font-size: $fontXS;
+    }
+    & > button:last-child {
+        @extend .mg-h-auto;
+        margin-top: size(5);
+    }
+    @include max(xs) {
+        & > .medium {
+            width: width(1);
+        }
+        & > button:last-child {
+            width: 100%;
+            padding: size(2) 0;
+            margin-top: size(3);
+        }
+    }
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: size(3);
+    margin-top: size(5);
+    @include max(xs) {
+        flex-direction: column;
+        margin-top: size(3);
+        button {
+            width: 100%;
+            padding: size(2) 0;
+        }
+    }
+}

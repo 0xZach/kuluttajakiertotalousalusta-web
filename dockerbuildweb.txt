@@ -1,0 +1,6 @@
+FROM node:13.5.0
+WORKDIR /webappcode
+COPY . .
+COPY package*.json ./
+RUN npm install
+EXPOSE 3000

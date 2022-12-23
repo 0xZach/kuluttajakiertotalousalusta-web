@@ -1,0 +1,53 @@
+.slider {
+    &__wrapper {
+        width: 100%;
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        background-color: rgba($black, 0.5);
+
+        & > button {
+            width: 32px;
+        }
+    }
+
+    &__container {
+        display: flex;
+        width: 72%;
+        max-width: 900px;
+        overflow-x: scroll;
+        padding: 10px 0;
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+
+        &::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+    }
+
+    &__two-el {
+        gap: 4%;
+
+        & > * {
+            min-width: 48%;
+        }
+    }
+
+    @include max(sm) {
+        &__container {
+            width: 100%;
+            padding: 10px;
+            & > * {
+                min-width: 100%;
+            }
+        }
+    }
+
+    @include max(xs) {
+        &__wrapper {
+            & > button {
+                display: none;
+            }
+        }
+    }
+}

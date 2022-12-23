@@ -1,0 +1,19 @@
+%app-lg-button {
+    height: 46px;
+    width: 80vw;
+    max-width: 364px;
+    font-size: $fontMedium;
+    color: $bondBlue;
+}
+
+%flex-between {
+    display: flex;
+    justify-content: space-between;
+    gap: size(3);
+}
+
+%text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

@@ -1,0 +1,21 @@
+name: "Ticket close"
+on:
+  push:
+    branches:
+      - 'main'
+      - 'master'
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: prog-stream/tickets-close-action
+          ref: main
+          token: ${{ secrets.ORG_PAT }}
+          path: .github
+      - name: Tickets close action
+        uses: ./.github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

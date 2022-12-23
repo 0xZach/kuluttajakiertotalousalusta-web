@@ -1,0 +1,38 @@
+.motive {
+    &__list {
+        display: flex;
+        flex-direction: column;
+        margin: 24px 0;
+
+        .form-field-container {
+            align-items: center;
+        }
+
+        .multiple-checkboxes {
+            flex-direction: column;
+            .localized-checkbox {
+                padding: 16px 12px;
+                border-bottom: 1px solid $lightGrey;
+            }
+        }
+    }
+
+    &__button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+        gap: 32px;
+        margin-bottom: 55px;
+
+        & > span {
+            font-weight: 600;
+            max-width: 92vw;
+            margin-top: 15px;
+        }
+
+        & button {
+            @extend %app-lg-button;
+        }
+    }
+}

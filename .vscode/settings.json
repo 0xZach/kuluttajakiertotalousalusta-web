@@ -1,0 +1,21 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.quoteStyle": "single",
+    "editor.tabSize": 4,
+    "editor.rulers": [
+        90,
+        120
+    ],
+    "files.exclude": {
+        ".vscode": true,
+        "node_modules": true,
+        "build": true,
+        ".gradle": true,
+        "nbproject": true,
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+    ],
+    "editor.formatOnSave": true,
+}
