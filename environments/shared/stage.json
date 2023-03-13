@@ -1,7 +1,7 @@
 {
     "APP_ENV": "stage",
     "GOOGLE_TAG_MANAGER_KEY": "",
-    "APP_URL": "https://kukita.coreorient.com",
+    "APP_URL": "https://www.xyz.fi",
     "OSM_TILES_SERVER": "https://osm.progstream.com/tile/{z}/{x}/{y}.png",
     "OSM_TILES_BASE_URL": "https://osm.progstream.com"
 }
