@@ -10,3 +10,5 @@ export const itemsRoute = '/items';
 export const problemsRoute = '/problems';
 
 export const resultsRoute = '/results';
+
+export const addTutoRoute = '/newTutorial';

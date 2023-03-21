@@ -1,24 +1,26 @@
-import React, {FC, useRef} from 'react';
-import {LocalizedHeading} from '../LocalizedHeading';
-import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
-import Leaflet, {Map, Marker as EMarker} from 'leaflet';
-import {latLng2TileUrl, runTimeSharedConfig} from 'src/util/common';
-import {Slider} from '../Slider/Slider';
-import {ServiceCard} from '../ServiceCard/ServiceCard';
-import {useRouter} from 'next/router';
-import {useAppTranslation} from 'src/hooks/useAppTranslation';
+import React, { FC, useRef } from 'react';
+import { LocalizedHeading } from '../LocalizedHeading';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import Leaflet, { Map, Marker as EMarker } from 'leaflet';
+import { latLng2TileUrl, runTimeSharedConfig } from 'src/util/common';
+import { Slider } from '../Slider/Slider';
+import { ServiceCard } from '../ServiceCard/ServiceCard';
+import { useRouter } from 'next/router';
+import { useAppTranslation } from 'src/hooks/useAppTranslation';
+import { request } from 'src/util/request';
 
 interface IProps {
     centerCoordinates: Coordinates;
     zoom?: number;
     services: Service[];
+    municipalities: Postal[];
 }
 
-const ServicesMap: FC<IProps> = ({centerCoordinates, zoom = 10, services}) => {
+const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, municipalities }) => {
     const mapRef = useRef<Map | null>(null);
     const markersRef = useRef<EMarker[]>([]);
     const router = useRouter();
-    const {t} = useAppTranslation();
+    const { t } = useAppTranslation();
 
     const flyToLocation = (marker?: EMarker) => {
         const map = mapRef.current;
@@ -29,11 +31,48 @@ const ServicesMap: FC<IProps> = ({centerCoordinates, zoom = 10, services}) => {
         }
     };
 
+
+
+
+    /*
+     * Goal: create logs of the actions in the result page and send them
+     * with a post request to the database.
+     *
+     */
+    const logsPostReq = (nextUrl: string, name: string, type: string) => {
+
+        // get today's date in the format "yyyy-mm-dd"
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        var date = yyyy + "-" + mm + "-" + dd;
+
+        // fetch the keywords from the current url
+        var paramsUrl = new URLSearchParams(window.location.search);
+        var keyEn = paramsUrl.get("keywordEn");
+        var keyFi = paramsUrl.get("keywordFi");
+
+        // send the post request
+        request({
+            method: "POST",
+            data: {
+                logsTime: date,
+                keywordEn: keyEn,
+                keywordFi: keyFi,
+                destinationUrl: nextUrl,
+                serviceName: name,
+                serviceTypeName: type,
+            },
+            // note: /api/ is replaced with the host IP to transfer the request to the NextApi
+            url: '/api/logs/insert',
+        });
+    }
     return (
         <div className="results-map">
             <div className="results-map__heading">
                 <LocalizedHeading t="KEYWORDS.SERVICES" heading="h3" />
-                <button onClick={() => router.push({pathname: '/services', query: router.query})}>
+                <button onClick={() => router.push({ pathname: '/services', query: router.query })}>
                     {t('LIST_VIEW')}
                 </button>
             </div>
@@ -44,8 +83,7 @@ const ServicesMap: FC<IProps> = ({centerCoordinates, zoom = 10, services}) => {
                 scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url={runTimeSharedConfig().OSM_TILES_SERVER}
-                />
+                    url={runTimeSharedConfig().OSM_TILES_SERVER} />
                 {services.map((service, idx) => (
                     <Marker
                         ref={(element) => (markersRef.current[idx] = element as EMarker)}
@@ -57,32 +95,41 @@ const ServicesMap: FC<IProps> = ({centerCoordinates, zoom = 10, services}) => {
                         })}
                         position={[Number(service.latitude), Number(service.longitude)]}>
                         <Popup>
-                            <a href={service.url} target="__blank">
+                            <a href={service.url} target="__blank"
+                                onClick={
+                                    () => logsPostReq(service.url, service.name, service.serviceTypeName)
+                                } >
                                 {service.name}
                             </a>
                         </Popup>
                     </Marker>
                 ))}
             </MapContainer>
-            {services.length > 0 && (
-                <Slider>
-                    {services.map((service, idx) => (
-                        <ServiceCard
-                            key={idx}
-                            name={service.name}
-                            address={service.address}
-                            serviceTypeName={service.serviceTypeName}
-                            phone={service.phone}
-                            image={latLng2TileUrl(service.latitude, service.longitude)}
-                            onCardClick={() => {
-                                flyToLocation(markersRef.current[idx]);
-                            }}
-                        />
-                    ))}
-                </Slider>
-            )}
-        </div>
+            {
+                services.length > 0 && (
+                    <Slider>
+                        {services.map((service, idx) => (
+                            <ServiceCard
+                                key={idx}
+                                name={service.name}
+                                address={service.address}
+                                municipality={municipalities[idx].municipality}
+                                serviceTypeName={service.serviceTypeName}
+                                phone={service.phone}
+                                image={latLng2TileUrl(service.latitude, service.longitude)}
+                                onCardClick={() => {
+                                    flyToLocation(markersRef.current[idx]);
+                                }}
+                            />
+                        ))}
+                    </Slider>
+                )
+            }
+        </div >
     );
 };
+
+
+
 
 export default ServicesMap;

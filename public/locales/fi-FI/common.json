@@ -90,5 +90,9 @@
     },
     "ADMIN_PAGE": {
         "TITLE": "Admin"
+    },
+    "TUTORIAL": {
+        "TITLE": "Ohje",
+        "ADD_NEW": "Luo uusi ohje"
     }
 }

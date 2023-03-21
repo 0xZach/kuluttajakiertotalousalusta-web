@@ -1,27 +1,29 @@
-import {GetServerSideProps, NextPage} from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
-import {Helmet} from 'src/components/Helmet/Helmet';
-import {ServicesList} from 'src/components/ServicesList/ServicesList';
-import {getIpFromNextRequest, getServerSideRequest, redirectToErrorPage, runTimeSharedConfig} from 'src/util/common';
-import {helsinkiCoordinates} from 'src/util/constants';
-import {request} from 'src/util/request';
+import { Helmet } from 'src/components/Helmet/Helmet';
+import { ServicesList } from 'src/components/ServicesList/ServicesList';
+import { getIpFromNextRequest, getServerSideRequest, redirectToErrorPage, runTimeSharedConfig } from 'src/util/common';
+import { helsinkiCoordinates } from 'src/util/constants';
+import { request } from 'src/util/request';
 
 interface ResultProps {
     results: Result[];
     services: Service[];
     itemName: string;
     problemName: string;
+    municipalities: Postal[];
 }
 
 interface IProps {
     services: Service[];
+    municipalities: Postal[];
 }
 
-const ServicesPage: NextPage<IProps> = ({services}) => {
+const ServicesPage: NextPage<IProps> = ({ services, municipalities }) => {
     return (
         <>
             <Helmet title="SERVICES.TITLE" />
-            <ServicesList services={services} />
+            <ServicesList services={services} municipalities={municipalities} />
         </>
     );
 };
@@ -53,11 +55,12 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (context) =>
         return {
             props: {
                 services: results.success?.data.services || [],
+                municipalities: results.success?.data.municipalities || [],
             },
         };
     } catch (error) {
         console.log(`Error at getServerSideProps: results page ${error}`);
-        return {redirect: redirectToErrorPage()};
+        return { redirect: redirectToErrorPage() };
     }
 };
 

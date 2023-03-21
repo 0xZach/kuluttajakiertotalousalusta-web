@@ -90,5 +90,9 @@
     },
     "ADMIN_PAGE": {
         "TITLE": "Admin"
+    },
+    "TUTORIAL": {
+        "TITLE": "Tutorial",
+        "ADD_NEW": "Add new Tutorial"
     }
 }

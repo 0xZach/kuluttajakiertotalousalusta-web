@@ -1,47 +1,70 @@
-import {GetServerSideProps, NextPage} from 'next';
-import {useRouter} from 'next/router';
+import { GetServerSideProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import React from 'react';
-import {Helmet} from 'src/components/Helmet/Helmet';
-import {LocalizedHeading} from 'src/components/LocalizedHeading';
-import {ResultInfo} from 'src/components/ResultInfo/ResultInfo';
+import { Helmet } from 'src/components/Helmet/Helmet';
+import { LocalizedHeading } from 'src/components/LocalizedHeading';
+import { ResultInfo } from 'src/components/ResultInfo/ResultInfo';
 import dynamic from 'next/dynamic';
-import {AppLayout} from 'src/containers/AppLayout/AppLayout';
-import {getIpFromNextRequest, getServerSideRequest, redirectToErrorPage, runTimeSharedConfig} from 'src/util/common';
-import {getLocaleCode, helsinkiCoordinates} from 'src/util/constants';
-import {request} from 'src/util/request';
-import {TutorialsList} from 'src/components/TutorialsList/TutorialsList';
-import {useAppTranslation} from 'src/hooks/useAppTranslation';
-import {CountryFlag} from 'src/components/LanguageDropdown/LanguageDropdown';
-import {countryCodes} from 'src/util/language';
+import { AppLayout } from 'src/containers/AppLayout/AppLayout';
+import { getIpFromNextRequest, getServerSideRequest, redirectToErrorPage, runTimeSharedConfig } from 'src/util/common';
+import { getLocaleCode, helsinkiCoordinates } from 'src/util/constants';
+import { request } from 'src/util/request';
+import { TutorialsList } from 'src/components/TutorialsList/TutorialsList';
+import { useAppTranslation } from 'src/hooks/useAppTranslation';
+import { CountryFlag } from 'src/components/LanguageDropdown/LanguageDropdown';
+import { countryCodes } from 'src/util/language';
+import { addTutoRoute } from 'src/util/nav-routes';
+import { LocalizedButton } from '../components/LocalizedButton/LocalizedButton';
+import { LocalizedText } from 'src/components/LocalizedText';
 
 interface ResultProps {
     results: Result[];
     services: Service[];
     itemName: string;
     problemName: string;
+    municipalities: Postal[];
 }
 interface IProps extends ResultProps {
     ipLocation: Coordinates;
 }
 
-const Results: NextPage<IProps> = ({ipLocation, results, itemName, problemName, services}) => {
+const Results: NextPage<IProps> = ({ ipLocation, results, itemName, problemName, services, municipalities }) => {
     const router = useRouter();
-    const {t} = useAppTranslation();
+    const { t } = useAppTranslation();
 
     const getSearchUrlByLang = (lang: Locales) =>
         `https://www.google.com/search?q=${encodeURI(
             `${router.query[lang === 'en-GB' ? 'keywordEn' : 'keywordFi']}?`,
         )}&hl=${getLocaleCode(lang)}&lr=lang_${getLocaleCode(lang)}`;
 
-    const ServicesMap = dynamic(() => import('../components/ServicesMap/ServicesMap'), {ssr: false});
+
+    const ServicesMap = dynamic(() => import('../components/ServicesMap/ServicesMap'), { ssr: false });
+
+    let problemId = router.query.problemId;
 
     return (
+
         <AppLayout
             className="results-page"
             bannerContent={<LocalizedHeading className="problems__heading" t="KEYWORDS.RESULT" heading="h1" />}>
             <Helmet title="SEO.HOME.TITLE" />
             <ResultInfo item={itemName} problem={problemName} noResults={results.length === 0} />
-            <ServicesMap centerCoordinates={ipLocation} services={services} />
+            <ServicesMap centerCoordinates={ipLocation} services={services} municipalities={municipalities} />
+            <div className="results-page__search-buttons">
+                <LocalizedButton
+                    variant="hollow"
+                    onClick={() => {
+                        router.push({
+                            pathname: addTutoRoute,
+                            query: {
+                                problemId: problemId,
+                            }
+                        });
+                    }}>
+                    <LocalizedText t="TUTORIAL.ADD_NEW" />
+                </LocalizedButton>
+            </div>
+            <TutorialsList tutorials={results} />
             <div className="results-page__search-buttons">
                 <a target="_blank" rel="noreferrer" href={getSearchUrlByLang('en-GB')}>
                     <span>{t('MAKE_GOOGLE_SEARCH')}</span>
@@ -52,7 +75,6 @@ const Results: NextPage<IProps> = ({ipLocation, results, itemName, problemName, 
                     <CountryFlag lang={countryCodes['fi']} />
                 </a>
             </div>
-            <TutorialsList tutorials={results} />
         </AppLayout>
     );
 };
@@ -93,6 +115,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (context) =>
             }),
         );
 
+
         return {
             props: {
                 ipLocation: location,
@@ -100,10 +123,11 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (context) =>
                 services: results.success?.data.services || [],
                 itemName: results.success?.data.itemName || '',
                 problemName: results.success?.data.problemName || '',
+                municipalities: results.success?.data.municipalities || [],
             },
         };
     } catch (error) {
         console.log(`Error at getServerSideProps: results page ${error}`);
-        return {redirect: redirectToErrorPage()};
+        return { redirect: redirectToErrorPage() };
     }
 };

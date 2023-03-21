@@ -15,6 +15,7 @@ type Service = {
 interface ServiceCardProps {
     name: string;
     address: string;
+    municipality: string;
     phone?: string;
     serviceTypeName?: string;
     image?: string;
