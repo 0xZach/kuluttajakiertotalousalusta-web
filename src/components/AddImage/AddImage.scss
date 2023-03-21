@@ -1,0 +1,21 @@
+.disappear {
+    display: none;
+}
+
+.choose-image:hover {
+    cursor: pointer;
+}
+
+.choose-image {
+    height: 100px;
+    width: 100px;
+    border: solid 1px black;
+    display: block;
+    overflow: hidden;
+    line-height: 100px;
+    text-align: center;
+}
+
+.add-image {
+    width: fit-content;
+}

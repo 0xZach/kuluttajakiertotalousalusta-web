@@ -14,6 +14,7 @@ import { AppLayout } from 'src/containers/AppLayout/AppLayout';
 import { LocalizedHeading } from 'src/components/LocalizedHeading';
 import { LocalizedButton } from 'src/components/LocalizedButton/LocalizedButton';
 import { LocalizedText } from 'src/components/LocalizedText';
+import { AddImage } from 'src/components/AddImage/AddImage';
 
 
 
@@ -48,8 +49,22 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, itemName, problemId }) 
             <Head>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" />
             </Head>
-            <input type="text"></input>
-            <div className="home-page__content">
+            <div className="header-AddImage">
+
+
+                <div className="image-side">
+                    <AddImage />
+                </div>
+                <div className="text-side">
+
+                    <div className="title-side">
+                        <input type="text" className="title" placeholder="Title" />
+                    </div>
+                    <div className="extra-side">
+                        <input type="text" className="tuto-link" placeholder="link" />
+                    </div>
+
+                </div>
 
             </div>
 

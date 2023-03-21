@@ -1,5 +1,6 @@
 @import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 @import 'react-toastify/dist/ReactToastify.css';
+
 @import 'reset.scss';
 @import 'media.scss';
 @import 'colors.scss';
@@ -12,6 +13,9 @@
 @import 'extendables.scss';
 @import 'form.scss';
 @import 'global.scss';
+@import '/src/styles/pages/results.scss';
+@import '/src/styles/pages/admin.scss';
+@import '/src/styles/pages/newTutorial.scss';
 @import '../components/LocalizedCheckbox/LocalizedCheckbox.scss';
 @import '../components/MultipleCheckboxes/MultipleCheckboxes.scss';
 @import '/src/containers/AppContainer/AppContainer.scss';
@@ -31,9 +35,8 @@
 @import '../components/ServicesMap/ServicesMap.scss';
 @import '../components/Slider/Slider.scss';
 @import '/src/components/ResultContainer/ResultContainer.scss';
-@import '/src/styles/pages/results.scss';
-@import '/src/styles/pages/admin.scss';
 @import '/src/components/ResultInfo/ResultInfo.scss';
 @import '../components/TutorialCard/TutorialCard.scss';
 @import '../components/TutorialsList/TutorialsList.scss';
 @import '../components/ServicesList/ServicesList.scss';
+@import '../components/AddImage/AddImage.scss';
