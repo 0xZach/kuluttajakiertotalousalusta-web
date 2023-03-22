@@ -1,15 +1,19 @@
 .header-AddImage {
     border: solid 1px black;
+    display: flex;
+    position: relative;
 }
 
 
 .image-side {
-    float: left;
+    flex: 0 0 100px;
+    width: 100px;
 }
 
 .text-side {
+    flex: 1;
     height: 100px;
-    float: left;
+    width: calc(100% - 100px);
 }
 
 .title-side {
