@@ -1,9 +1,9 @@
 .header-AddImage {
-    border: solid 1px black;
+    border: solid 1px gray;
     display: flex;
     position: relative;
+    margin: 25px;
 }
-
 
 .image-side {
     flex: 0 0 100px;
@@ -17,14 +17,68 @@
 }
 
 .title-side {
-    height: 50%;
+    height: calc(50% - 15px);
+    margin-top: 15px;
+    margin-left: 7px;
 }
 
 .extra-side {
     width: 100%;
-    height: 50%;
+    height: calc(50% - 5px);
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+.tuto-title {
+    width: 300px;
+    height: 30px;
+    font-size: 1.5em;
+    border: none;
 }
 
 .tuto-link {
-    left: 0px;
+    border: none;
+    color: blue;
+}
+
+.tuto-link:focus,
+.tuto-title:focus {
+    outline: 1px solid gray;
+    border-radius: 2pt;
+}
+
+.input-and-title,
+.description {
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.input-and-title {
+    display: flex;
+}
+
+.input-title {
+    flex: 0 0 60%;
+    font-weight: bold;
+}
+
+.input {
+    flex: 1;
+}
+
+.input-cost,
+.input-time {
+    width: 70px;
+    border: none;
+    float: right;
+}
+
+.input-desc {
+    border: none;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-left: 10px;
 }

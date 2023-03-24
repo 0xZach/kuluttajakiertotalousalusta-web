@@ -50,7 +50,7 @@ export const AddImage: React.FC<Props> = () => {
     return (
         <div className="add-image">
 
-            <Image id="target" className="choose-image" alt="add image"
+            <Image id="target" className="choose-image" alt="click or drop"
                 onDrop={(event) => dropImage(event)}
             />
             <input type="file" id="select_image" className="disappear"
