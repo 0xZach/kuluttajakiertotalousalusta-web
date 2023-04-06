@@ -28,7 +28,7 @@ export const TutorialCard: React.FC<TutorialCardProps> = ({ name, intro, url, co
         request({
             method: "POST",
             data: {
-                logsTime: date,
+                logTimestamp: date,
                 keywordEn: keyEn,
                 keywordFi: keyFi,
                 destinationUrl: nextUrl,

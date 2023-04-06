@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, {FC, ButtonHTMLAttributes} from 'react';
+import React, { FC, ButtonHTMLAttributes } from 'react';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'hollow' | 'filled';

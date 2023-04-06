@@ -57,7 +57,7 @@ const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, munic
         request({
             method: "POST",
             data: {
-                logsTime: date,
+                logTimestamp: date,
                 keywordEn: keyEn,
                 keywordFi: keyFi,
                 destinationUrl: nextUrl,

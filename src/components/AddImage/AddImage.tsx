@@ -1,8 +1,9 @@
+import classNames from 'classnames';
 import { Image } from '../Image/Image';
 
 type Props = React.ImgHTMLAttributes<HTMLImageElement>;
 
-export const AddImage: React.FC<Props> = () => {
+export const AddImage: React.FC<Props> = ({ className }) => {
 
 
     /*
@@ -24,10 +25,21 @@ export const AddImage: React.FC<Props> = () => {
      *
      */
     function putImage() {
+        hideIcon();
+        var target = document.getElementById("target")!! as HTMLImageElement;
         var src = document.getElementById("select_image");
-        var target = document.getElementById("target");
+
         showImage(src, target);
     }
+
+
+    function hideIcon() {
+        var icon = document.getElementById("image-icon")!!;
+        icon.style.display = "none";
+        var img = document.getElementById("target")!! as HTMLImageElement;
+        img.style.display = "block";
+    }
+
 
 
     /*
@@ -35,7 +47,10 @@ export const AddImage: React.FC<Props> = () => {
      *
      */
     function dropImage(e: any) {
-        var target = document.getElementById("target")!! as HTMLImageElement
+
+        hideIcon();
+        var target = document.getElementById("target")!! as HTMLImageElement;
+
         var fr = new FileReader();
 
         fr.onload = function (event) {
@@ -50,10 +65,15 @@ export const AddImage: React.FC<Props> = () => {
     return (
         <div className="add-image">
 
-            <Image id="target" className="choose-image" alt="click or drop"
+            <i className="fa-regular fa-image fa-2xl choose-image" id="image-icon" />
+            <Image id="target" className={classNames(
+                className,
+                "choose-image"
+            )}
                 onDrop={(event) => dropImage(event)}
             />
-            <input type="file" id="select_image" className="disappear"
+
+            <input type="file" id="select_image" className="disappear" title="click or drop"
                 onChange={() => putImage()}
             />
         </div>

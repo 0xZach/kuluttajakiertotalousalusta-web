@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
 //import { useRouter } from 'next/router';
 
@@ -15,41 +15,179 @@ import { LocalizedHeading } from 'src/components/LocalizedHeading';
 //import { LocalizedButton } from 'src/components/LocalizedButton/LocalizedButton';
 //import { LocalizedText } from 'src/components/LocalizedText';
 import { AddImage } from 'src/components/AddImage/AddImage';
+import { Dropdown } from 'src/components/Dropdown/Dropdown';
+import { useAppTranslation } from 'src/hooks/useAppTranslation';
+import { LocalizedButton } from 'src/components/LocalizedButton/LocalizedButton';
 
-
-
-
-
-interface ReferenceProps {
+interface ResultProps {
     itemId: number;
-    itemName: string;
+    categoryId: number;
     problemId: number;
 }
 
+interface SkillProps {
+    skillLevels: Skill[];
+}
 
-const addTutoPage: NextPage<ReferenceProps> = ({ itemId, itemName, problemId }) => {
-    //const router = useRouter();
-    console.log("| " + itemId + " | " + itemName + " | " + problemId);
+interface TypeProps {
+    contentTypes: ContentType[];
+}
 
-    /*const confirm = () => {
-        router.push({
-            pathname: homeRoute,
-        });
-    };*/
+interface ReferenceProps extends ResultProps, SkillProps, TypeProps { }
+
+
+
+const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, skillLevels, contentTypes }) => {
+
+    const { lang } = useAppTranslation()
+
+    const switchHead = (id: string, dropdown: string) => {
+        var header = document.getElementsByClassName(dropdown + "-dropdown__head")[0]!!;
+        var headSpan = header.getElementsByTagName("span").item(0)!!;
+        var newHeadSpan = document.getElementById(id)!!;
+
+        headSpan.innerHTML = newHeadSpan.innerHTML;
+        headSpan.id = newHeadSpan.id;
+    }
+
+
+    const confirmCreation = (problemId: number, itemId: number, categoryId: number, lang: string) => {
+        var skillLevel = document
+            .getElementsByClassName("skill-dropdown__head")[0]!!
+            .getElementsByTagName("span").item(0)!!
+            .id
+            .split("skill_")[1];
+        var tutoType = document
+            .getElementsByClassName("type-dropdown__head")[0]!!
+            .getElementsByTagName("span").item(0)!!
+            .id
+            .split("type_")[1];
+
+        var iconSRC = (document.getElementsByClassName("chosen-icon").item(0)!! as HTMLImageElement).src;
+
+        var cost = (document.getElementsByClassName("input-cost").item(0)!! as HTMLInputElement).value;
+
+        var estTime = (document.getElementsByClassName("input-time").item(0)!! as HTMLInputElement).value;
+
+        var desc = (document.getElementsByClassName("input-desc").item(0)!! as HTMLInputElement).value;
+
+        var title = (document.getElementsByClassName("tuto-title").item(0)!! as HTMLInputElement).value;
+
+        var link = (document.getElementsByClassName("tuto-link").item(0)!! as HTMLInputElement).value;
+
+        request({
+            method: "POST",
+            url: "/api/results/insert",
+            data: {
+                problemId: problemId,
+                itemId: itemId,
+                categoryId: categoryId,
+                contentTypeId: tutoType,
+                skillLevelId: skillLevel,
+                lang: lang,
+                tutorialName: title,
+                tutorialIntro: desc,
+                tutorialUrl: link,
+                tutorialImage: iconSRC,
+                minCostEuro: cost,
+                minTime: estTime,
+            }
+        })
+
+        // TO DO, UNCOMMENT THIS AND CHOOSE WHICH PAGE TO GO TO
+        /*const router = useRouter();
+
+        const confirm = () => {
+            router.push({
+                pathname: homeRoute,
+            });
+        };*/
+
+    }
+
+
+
+    const SkillMenu: FC = () => (
+        <div className="skill-dropdown__menu">
+            {
+                skillLevels.map((skill) => (
+
+                    <a
+                        className="skill-dropdown__item"
+                        key={skill.id}
+                        onClick={() => switchHead("skill_" + skill.id, "skill")}
+                    >
+                        <span id={"skill_" + skill.id}>
+                            {
+                                useAppTranslation().lang === "en-GB" ?
+                                    skill.minSkillEN : skill.minSkillFI
+                            }
+                        </span>
+                    </a>
+
+                ))
+            }
+        </div>
+    );
+
+    const TypeMenu: FC = () => (
+        <div className="type-dropdown__menu">
+            {contentTypes.map((type) => (
+
+                <a
+                    className="type-dropdown__item"
+                    key={type.id}
+                    onClick={() => switchHead("type_" + type.id, "type")}
+                >
+                    <span id={"type_" + type.id}>
+                        {
+                            useAppTranslation().lang === "en-GB" ?
+                                type.contentTypeEN : type.contentTypeFI
+                        }
+                    </span>
+                </a>
+
+            ))
+            }
+        </div>
+    );
+
+
+
+
+
+
+    //   HTML CONTENT    //
+
+
+
 
     return (
         <AppLayout
             bannerContent={
-                <LocalizedHeading className="items__heading" t="TUTORIAL.TITLE" heading="h1">
-                </LocalizedHeading>
+                <div className="banner-container">
+                    <LocalizedHeading className="items__heading" t="TUTORIAL.TITLE" heading="h1">
+                    </LocalizedHeading>
+                    <div className="button-container">
+                        <LocalizedButton
+                            variant="hollow"
+                            size="large"
+                            className="confirm-button"
+                            onClick={() => confirmCreation(problemId, itemId, categoryId, lang)}
+                        >
+                            <span className="text">Add Tutorial</span>
+                        </LocalizedButton>
+                    </div>
+                </div>
             }>
             <Head>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" />
             </Head>
+
             <div className="header-AddImage">
 
                 <div className="image-side">
-                    <AddImage />
+                    <AddImage className="chosen-icon" />
                 </div>
                 <div className="text-side">
 
@@ -64,21 +202,67 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, itemName, problemId }) 
 
             </div>
             <div className="input-and-title">
-                <p className="input-title">Cost in €</p>
+                <span className="input-title text">Skill level</span>
+                <div className="input">
+                    <Dropdown
+                        className="skill-dropdown"
+                        head={
+                            <div className="skill-dropdown__head">
+                                <span id={"skill_" + skillLevels[0].id} className="dropdown-head-text">
+                                    {
+                                        lang === "en-GB" ?
+                                            skillLevels[0].minSkillEN : skillLevels[0].minSkillFI
+                                    }
+                                </span>
+                                <i className="filled-arrow down skill-arrow"></i>
+                            </div>
+                        }
+                        menu={
+                            <SkillMenu />
+                        }
+                    />
+                </div>
+            </div>
+
+            <div className="input-and-title">
+                <span className="input-title text">Type of tutorial</span>
+                <div className="input">
+                    <Dropdown
+                        className="type-dropdown"
+                        head={
+                            <div className="type-dropdown__head">
+                                <span id={"type_" + contentTypes[0].id} className="dropdown-head-text">
+                                    {
+                                        useAppTranslation().lang === "en-GB" ?
+                                            contentTypes[0].contentTypeEN : contentTypes[0].contentTypeFI
+                                    }
+                                </span>
+                                <i className="filled-arrow down skill-arrow"></i>
+                            </div>
+                        }
+                        menu={
+                            <TypeMenu />
+                        }
+                    />
+                </div>
+            </div>
+
+            <div className="input-and-title">
+                <span className="input-title text">Cost in €</span>
                 <div className="input">
                     <input className="input-cost" type="number" min="1" step="0.01" placeholder="1.00" />
                 </div>
             </div>
 
             <div className="input-and-title">
-                <p className="input-title">Estimated Time</p>
+                <span className="input-title text">Estimated time in minutes</span>
                 <div className="input">
-                    <input className="input-time" type="text" placeholder="0h 00m" />
+                    <input className="input-time" type="number" min="0" placeholder="1" />
                 </div>
             </div>
 
             <div className="description">
-                <p className="input-title">Description</p>
+                <span className="input-title text">Description</span>
                 <div className="input">
                     <textarea className="input-desc"
                         placeholder="Add a description." cols={10} rows={10} />
@@ -91,14 +275,43 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, itemName, problemId }) 
 
 export default addTutoPage;
 
-export const getServerSideProps: GetServerSideProps<ReferenceProps> = async (context) => {
+
+
+
+
+
+
+
+//   GET SERVER-SIDE PROPS    //
+
+
+
+
+
+export const getServerSideProps: AppServerSideProps<ReferenceProps> = async (context) => {
     try {
-        const problemId = typeof context.query.problemId === "string" ? +context.query.problemId : 0;
+        const problemId = typeof context.query.problemId === "string" ? Number(context.query.problemId) : 0;
 
         let resultsPath = `results/${problemId}/${helsinkiCoordinates.latitude}/${helsinkiCoordinates.longitude}`;
-        const results = await request<void, ReferenceProps>(
+        const results = await request<void, ResultProps>(
             await getServerSideRequest({
                 path: resultsPath,
+                context,
+            }),
+        );
+
+        let skillLevelsPath = `skill-levels`;
+        const skillLevels = await request<void, SkillProps>(
+            await getServerSideRequest({
+                path: skillLevelsPath,
+                context,
+            }),
+        );
+
+        let contentTypesPath = `content-types`;
+        const contentTypes = await request<void, TypeProps>(
+            await getServerSideRequest({
+                path: contentTypesPath,
                 context,
             }),
         );
@@ -106,9 +319,11 @@ export const getServerSideProps: GetServerSideProps<ReferenceProps> = async (con
         return {
             props: {
                 itemId: results.success?.data.itemId || 0,
-                itemName: results.success?.data.itemName || '',
+                categoryId: results.success?.data.categoryId || '',
                 problemId: problemId,
-            },
+                skillLevels: skillLevels.success?.data.skillLevels || [],
+                contentTypes: contentTypes.success?.data.contentTypes || [],
+            } as ReferenceProps,
         };
     } catch (error) {
         console.log(`Error at getServerSideProps: results page ${error}`);

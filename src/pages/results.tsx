@@ -37,7 +37,6 @@ const Results: NextPage<IProps> = ({ ipLocation, results, itemName, problemName,
             `${router.query[lang === 'en-GB' ? 'keywordEn' : 'keywordFi']}?`,
         )}&hl=${getLocaleCode(lang)}&lr=lang_${getLocaleCode(lang)}`;
 
-
     const ServicesMap = dynamic(() => import('../components/ServicesMap/ServicesMap'), { ssr: false });
 
     let problemId = router.query.problemId;
@@ -123,7 +122,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (context) =>
                 services: results.success?.data.services || [],
                 itemName: results.success?.data.itemName || '',
                 problemName: results.success?.data.problemName || '',
-                municipalities: results.success?.data.municipalities || [],
+                municipalities: results.success?.data.municipalities || []
             },
         };
     } catch (error) {
