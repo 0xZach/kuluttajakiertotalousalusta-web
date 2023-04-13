@@ -12,12 +12,11 @@ import { request } from 'src/util/request';
 import { AppLayout } from 'src/containers/AppLayout/AppLayout';
 
 import { LocalizedHeading } from 'src/components/LocalizedHeading';
-//import { LocalizedButton } from 'src/components/LocalizedButton/LocalizedButton';
-//import { LocalizedText } from 'src/components/LocalizedText';
+import { LocalizedButton } from 'src/components/LocalizedButton/LocalizedButton';
+import { LocalizedText } from 'src/components/LocalizedText';
 import { AddImage } from 'src/components/AddImage/AddImage';
 import { Dropdown } from 'src/components/Dropdown/Dropdown';
 import { useAppTranslation } from 'src/hooks/useAppTranslation';
-import { LocalizedButton } from 'src/components/LocalizedButton/LocalizedButton';
 
 interface ResultProps {
     itemId: number;
@@ -39,7 +38,7 @@ interface ReferenceProps extends ResultProps, SkillProps, TypeProps { }
 
 const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, skillLevels, contentTypes }) => {
 
-    const { lang } = useAppTranslation()
+    const { t: trans, lang } = useAppTranslation()
 
     const switchHead = (id: string, dropdown: string) => {
         var header = document.getElementsByClassName(dropdown + "-dropdown__head")[0]!!;
@@ -175,7 +174,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                             className="confirm-button"
                             onClick={() => confirmCreation(problemId, itemId, categoryId, lang)}
                         >
-                            <span className="text">Add Tutorial</span>
+                            <LocalizedText t="TUTORIAL.CONFIRM_BUTTON" className="titles" />
                         </LocalizedButton>
                     </div>
                 </div>
@@ -192,17 +191,17 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                 <div className="text-side">
 
                     <div className="title-side">
-                        <input type="text" className="tuto-title" placeholder="Title" />
+                        <input type="text" className="tuto-title" placeholder={trans("TUTORIAL.TITLE_PLACEHOLD")} />
                     </div>
                     <div className="extra-side">
-                        <input type="text" className="tuto-link" placeholder="link" />
+                        <input type="text" className="tuto-link" placeholder={trans("TUTORIAL.LINK_PLACEHOLD")} />
                     </div>
 
                 </div>
 
             </div>
             <div className="input-and-title">
-                <span className="input-title text">Skill level</span>
+                <LocalizedText className="input-title titles" t="TUTORIAL.SKILL_LEVEL_TITLE" />
                 <div className="input">
                     <Dropdown
                         className="skill-dropdown"
@@ -225,7 +224,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
             </div>
 
             <div className="input-and-title">
-                <span className="input-title text">Type of tutorial</span>
+                <LocalizedText className="input-title titles" t="TUTORIAL.TYPE_TITLE" />
                 <div className="input">
                     <Dropdown
                         className="type-dropdown"
@@ -248,24 +247,25 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
             </div>
 
             <div className="input-and-title">
-                <span className="input-title text">Cost in €</span>
+                <LocalizedText className="input-title titles" t="TUTORIAL.COST_TITLE" />
                 <div className="input">
                     <input className="input-cost" type="number" min="1" step="0.01" placeholder="1.00" />
                 </div>
             </div>
 
             <div className="input-and-title">
-                <span className="input-title text">Estimated time in minutes</span>
+                <LocalizedText className="input-title titles" t="TUTORIAL.TIME_ESTIMATE_TITLE" />
                 <div className="input">
                     <input className="input-time" type="number" min="0" placeholder="1" />
                 </div>
             </div>
 
             <div className="description">
-                <span className="input-title text">Description</span>
+                <LocalizedText className="input-title titles" t="TUTORIAL.DESCRIPTION_TITLE" />
                 <div className="input">
                     <textarea className="input-desc"
-                        placeholder="Add a description." cols={10} rows={10} />
+                        placeholder={trans("TUTORIAL.DESCRIPTION_PLACEHOLD")}
+                        cols={10} rows={10} />
                 </div>
             </div>
 

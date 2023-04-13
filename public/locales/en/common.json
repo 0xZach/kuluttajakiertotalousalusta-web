@@ -93,6 +93,18 @@
     },
     "TUTORIAL": {
         "TITLE": "Tutorial",
-        "ADD_NEW": "Add new Tutorial"
+        "ADD_NEW": "Add new Tutorial",
+        "CONFIRM_BUTTON": "Add Tutorial",
+        "SKILL_LEVEL_TITLE": "Skill level",
+        "TYPE_TITLE": "Type of tutorial",
+        "COST_TITLE": "Cost (€)",
+        "TIME_ESTIMATE_TITLE": "Estimated time (min)",
+        "DESCRIPTION_TITLE": "Description",
+        "TITLE_PLACEHOLD": "Title",
+        "LINK_PLACEHOLD": "link",
+        "DESCRIPTION_PLACEHOLD": "Add a description."
+    },
+    "ADD_IMAGE": {
+        "CLICK_DROP": "click or drop"
     }
 }

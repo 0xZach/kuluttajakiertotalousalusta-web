@@ -1,9 +1,12 @@
 import classNames from 'classnames';
 import { Image } from '../Image/Image';
+import { useAppTranslation } from 'src/hooks/useAppTranslation';
 
 type Props = React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const AddImage: React.FC<Props> = ({ className }) => {
+
+    const { t: trans } = useAppTranslation()
 
 
     /*
@@ -73,7 +76,7 @@ export const AddImage: React.FC<Props> = ({ className }) => {
                 onDrop={(event) => dropImage(event)}
             />
 
-            <input type="file" id="select_image" className="disappear" title="click or drop"
+            <input type="file" id="select_image" className="disappear" title={trans("ADD_IMAGE.CLICK_DROP")}
                 onChange={() => putImage()}
             />
         </div>

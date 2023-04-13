@@ -93,6 +93,18 @@
     },
     "TUTORIAL": {
         "TITLE": "Ohje",
-        "ADD_NEW": "Luo uusi ohje"
+        "ADD_NEW": "Uusi ohje",
+        "CONFIRM_BUTTON": "lisää ohje",
+        "SKILL_LEVEL_TITLE": "Taitotaso",
+        "TYPE_TITLE": "Ohjeen tyyppi",
+        "COST_TITLE": "Kustannukset (€)",
+        "TIME_ESTIMATE_TITLE": "Arvioitu aika (min)",
+        "DESCRIPTION_TITLE": "Kuvaus",
+        "TITLE_PLACEHOLD": "Otsikko",
+        "LINK_PLACEHOLD": "linkki",
+        "DESCRIPTION_PLACEHOLD": "lisää kuvaus."
+    },
+    "ADD_IMAGE": {
+        "CLICK_DROP": "klikkaa tai pudota"
     }
 }
