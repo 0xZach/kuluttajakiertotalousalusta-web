@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 
 import { NextPage } from 'next';
 import Head from 'next/head';
-//import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
-//import { homeRoute } from 'src/util/nav-routes';
+import { homeRoute } from 'src/util/nav-routes';
 import { getServerSideRequest, redirectToErrorPage } from 'src/util/common';
 import { helsinkiCoordinates } from 'src/util/constants';
 import { request } from 'src/util/request';
@@ -48,6 +48,14 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
         headSpan.innerHTML = newHeadSpan.innerHTML;
         headSpan.id = newHeadSpan.id;
     }
+
+    const router = useRouter();
+
+    const confirm = () => {
+        router.push({
+            pathname: homeRoute,
+        });
+    };
 
 
     const confirmCreation = (problemId: number, itemId: number, categoryId: number, lang: string) => {
@@ -93,14 +101,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
             }
         })
 
-        // TO DO, UNCOMMENT THIS AND CHOOSE WHICH PAGE TO GO TO
-        /*const router = useRouter();
-
-        const confirm = () => {
-            router.push({
-                pathname: homeRoute,
-            });
-        };*/
+        confirm()
 
     }
 
