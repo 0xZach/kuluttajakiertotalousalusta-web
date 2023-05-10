@@ -106,11 +106,11 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
     }
 
 
-
+    var localeSkill = skillLevels.filter(function (skill) { if (skill.lang === useAppTranslation().lang) { return skill } })
     const SkillMenu: FC = () => (
         <div className="skill-dropdown__menu">
             {
-                skillLevels.map((skill) => (
+                localeSkill.map((skill) => (
 
                     <a
                         className="skill-dropdown__item"
@@ -119,7 +119,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                     >
                         <span id={"skill_" + skill.id}>
                             {
-                                useAppTranslation().lang === skill.lang ? skill.label : ""
+                                useAppTranslation().lang === skill.lang ? skill.label : null
                             }
                         </span>
                     </a>
@@ -129,20 +129,22 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
         </div>
     );
 
+    var localeType = contentTypes.filter(function (type) { if (type.lang === useAppTranslation().lang) { return type } })
     const TypeMenu: FC = () => (
         <div className="type-dropdown__menu">
-            {contentTypes.map((type) => (
-
+            {localeType.map((type) => (
                 <a
                     className="type-dropdown__item"
                     key={type.id}
                     onClick={() => switchHead("type_" + type.id, "type")}
                 >
+
                     <span id={"type_" + type.id}>
                         {
-                            useAppTranslation().lang === type.lang ? type.lang : ""
+                            useAppTranslation().lang === type.lang ? type.label : ""
                         }
                     </span>
+
                 </a>
 
             ))
@@ -208,7 +210,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                             <div className="skill-dropdown__head">
                                 <span id={"skill_" + skillLevels[0].id} className="dropdown-head-text">
                                     {
-                                        lang === skillLevels[0].lang ? skillLevels[0].label : ""
+                                        lang === skillLevels[0].lang ? skillLevels[0].label : null
                                     }
                                 </span>
                                 <i className="filled-arrow down skill-arrow"></i>
