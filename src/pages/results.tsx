@@ -19,6 +19,8 @@ import { LocalizedText } from 'src/components/LocalizedText';
 
 interface ResultProps {
     results: Result[];
+    skills: Skill[];
+    contentTypes: ContentType[];
     services: Service[];
     itemName: string;
     problemName: string;
@@ -28,9 +30,10 @@ interface IProps extends ResultProps {
     ipLocation: Coordinates;
 }
 
-const Results: NextPage<IProps> = ({ ipLocation, results, itemName, problemName, services, municipalities }) => {
+const Results: NextPage<IProps> = ({ ipLocation, results, skills, contentTypes, itemName, problemName, services, municipalities }) => {
     const router = useRouter();
     const { t } = useAppTranslation();
+
 
     const getSearchUrlByLang = (lang: Locales) =>
         `https://www.google.com/search?q=${encodeURI(
@@ -63,7 +66,7 @@ const Results: NextPage<IProps> = ({ ipLocation, results, itemName, problemName,
                     <LocalizedText t="TUTORIAL.ADD_NEW" />
                 </LocalizedButton>
             </div>
-            <TutorialsList tutorials={results} />
+            <TutorialsList tutorials={results} skillLevels={skills} contentTypes={contentTypes} />
             <div className="results-page__search-buttons">
                 <a target="_blank" rel="noreferrer" href={getSearchUrlByLang('en-GB')}>
                     <span>{t('MAKE_GOOGLE_SEARCH')}</span>
@@ -119,6 +122,8 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (context) =>
             props: {
                 ipLocation: location,
                 results: results.success?.data.results || [],
+                skills: results.success?.data.skills || [],
+                contentTypes: results.success?.data.contentTypes || [],
                 services: results.success?.data.services || [],
                 itemName: results.success?.data.itemName || '',
                 problemName: results.success?.data.problemName || '',

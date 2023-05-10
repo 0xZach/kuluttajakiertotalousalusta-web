@@ -39,7 +39,7 @@ const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, munic
      * with a post request to the database.
      *
      */
-    const logsPostReq = (nextUrl: string, name: string, type: string) => {
+    const logsPostReq = (resultId: number) => {
 
         // get today's date in the format "yyyy-mm-dd"
         var today = new Date();
@@ -48,23 +48,15 @@ const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, munic
         var yyyy = today.getFullYear();
         var date = yyyy + "-" + mm + "-" + dd;
 
-        // fetch the keywords from the current url
-        var paramsUrl = new URLSearchParams(window.location.search);
-        var keyEn = paramsUrl.get("keywordEn");
-        var keyFi = paramsUrl.get("keywordFi");
-
         // send the post request
         request({
             method: "POST",
             data: {
                 logTimestamp: date,
-                keywordEn: keyEn,
-                keywordFi: keyFi,
-                destinationUrl: nextUrl,
-                serviceName: name,
-                serviceTypeName: type,
+                serviceOrTutorial: "service",
+                resultId: resultId,
             },
-            // note: /api/ is replaced with the host IP to transfer the request to the NextApi
+
             url: '/api/logs/insert',
         });
     }
@@ -97,7 +89,7 @@ const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, munic
                         <Popup>
                             <a href={service.url} target="__blank"
                                 onClick={
-                                    () => logsPostReq(service.url, service.name, service.serviceTypeName)
+                                    () => logsPostReq(service.id)
                                 } >
                                 {service.name}
                             </a>

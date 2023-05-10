@@ -1,27 +1,25 @@
-import React, {FC} from 'react';
-import {useAppTranslation} from 'src/hooks/useAppTranslation';
-import {TutorialCard} from '../TutorialCard/TutorialCard';
+import React, { FC } from 'react';
+import { useAppTranslation } from 'src/hooks/useAppTranslation';
+import { TutorialCard } from '../TutorialCard/TutorialCard';
 
 interface IProps {
     tutorials: Result[];
+    skillLevels: Skill[];
+    contentTypes: ContentType[];
 }
 
-export const TutorialsList: FC<IProps> = ({tutorials}) => {
-    const {t} = useAppTranslation();
+export const TutorialsList: FC<IProps> = ({ tutorials, skillLevels, contentTypes }) => {
+    const { t } = useAppTranslation();
 
     return (
         <div className="tutorials-listing">
             <h3 className="mg-v-5">{t('TUTORIALS')}</h3>
             <div className="tutorials-listing__list">
-                {tutorials.map((tutorial) => (
+                {tutorials.map((tutorial, idx) => (
                     <TutorialCard
-                        key={tutorial.id}
-                        name={tutorial.tutorialName}
-                        intro={tutorial.tutorialName}
-                        url={tutorial.tutorialUrl}
-                        minSkill={tutorial.minSkill}
-                        image={tutorial.tutorialImage}
-                        contentType={tutorial.contentType}
+                        result={tutorial}
+                        skill={skillLevels[idx]}
+                        type={contentTypes[idx]}
                     />
                 ))}
             </div>
