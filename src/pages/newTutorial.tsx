@@ -119,8 +119,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                     >
                         <span id={"skill_" + skill.id}>
                             {
-                                useAppTranslation().lang === "en-GB" ?
-                                    skill.minSkillEN : skill.minSkillFI
+                                useAppTranslation().lang === skill.lang ? skill.label : ""
                             }
                         </span>
                     </a>
@@ -141,8 +140,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                 >
                     <span id={"type_" + type.id}>
                         {
-                            useAppTranslation().lang === "en-GB" ?
-                                type.contentTypeEN : type.contentTypeFI
+                            useAppTranslation().lang === type.lang ? type.lang : ""
                         }
                     </span>
                 </a>
@@ -210,8 +208,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                             <div className="skill-dropdown__head">
                                 <span id={"skill_" + skillLevels[0].id} className="dropdown-head-text">
                                     {
-                                        lang === "en-GB" ?
-                                            skillLevels[0].minSkillEN : skillLevels[0].minSkillFI
+                                        lang === skillLevels[0].lang ? skillLevels[0].label : ""
                                     }
                                 </span>
                                 <i className="filled-arrow down skill-arrow"></i>
@@ -233,8 +230,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                             <div className="type-dropdown__head">
                                 <span id={"type_" + contentTypes[0].id} className="dropdown-head-text">
                                     {
-                                        useAppTranslation().lang === "en-GB" ?
-                                            contentTypes[0].contentTypeEN : contentTypes[0].contentTypeFI
+                                        useAppTranslation().lang === contentTypes[0].lang ? contentTypes[0].label : ""
                                     }
                                 </span>
                                 <i className="filled-arrow down skill-arrow"></i>

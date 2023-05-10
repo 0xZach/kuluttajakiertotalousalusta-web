@@ -1,5 +1,5 @@
 type ContentType = {
     id: number;
-    contentTypeEN: string;
-    contentTypeFI: string;
+    label: string;
+    lang: string;
 };
