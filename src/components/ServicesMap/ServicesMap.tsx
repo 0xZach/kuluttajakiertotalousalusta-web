@@ -13,10 +13,11 @@ interface IProps {
     centerCoordinates: Coordinates;
     zoom?: number;
     services: Service[];
+    serviceTypes: ServiceType[];
     municipalities: Postal[];
 }
 
-const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, municipalities }) => {
+const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, serviceTypes, municipalities }) => {
     const mapRef = useRef<Map | null>(null);
     const markersRef = useRef<EMarker[]>([]);
     const router = useRouter();
@@ -106,7 +107,7 @@ const ServicesMap: FC<IProps> = ({ centerCoordinates, zoom = 10, services, munic
                                 name={service.name}
                                 address={service.address}
                                 municipality={municipalities[idx].municipality}
-                                serviceTypeName={service.serviceTypeName}
+                                serviceTypeName={serviceTypes[idx].typeName}
                                 phone={service.phone}
                                 image={latLng2TileUrl(service.latitude, service.longitude)}
                                 onCardClick={() => {

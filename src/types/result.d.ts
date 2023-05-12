@@ -4,12 +4,12 @@ type Result = {
     itemId: number;
     categoryid: number;
     lang: string;
-    contentType: string;
+    contentType: number;
     tutorialName: string;
     tutorialIntro: string;
     tutorialUrl: string;
     minCost: string;
-    minSkill: string;
+    minSkill: number;
     minTime: string;
     tutorialImage: string;
 };

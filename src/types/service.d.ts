@@ -1,7 +1,7 @@
 type Service = {
     id: number;
     lang: string;
-    serviceTypeName: string;
+    serviceTypeId: number;
     name: string;
     latitude: number;
     longitude: number;

@@ -20,6 +20,7 @@ import { LocalizedText } from 'src/components/LocalizedText';
 interface ResultProps {
     results: Result[];
     skills: Skill[];
+    serviceTypes: ServiceType[];
     contentTypes: ContentType[];
     services: Service[];
     itemName: string;
@@ -30,7 +31,7 @@ interface IProps extends ResultProps {
     ipLocation: Coordinates;
 }
 
-const Results: NextPage<IProps> = ({ ipLocation, results, skills, contentTypes, itemName, problemName, services, municipalities }) => {
+const Results: NextPage<IProps> = ({ ipLocation, results, skills, serviceTypes, contentTypes, itemName, problemName, services, municipalities }) => {
     const router = useRouter();
     const { t } = useAppTranslation();
 
@@ -51,7 +52,7 @@ const Results: NextPage<IProps> = ({ ipLocation, results, skills, contentTypes, 
             bannerContent={<LocalizedHeading className="problems__heading" t="KEYWORDS.RESULT" heading="h1" />}>
             <Helmet title="SEO.HOME.TITLE" />
             <ResultInfo item={itemName} problem={problemName} noResults={results.length === 0} />
-            <ServicesMap centerCoordinates={ipLocation} services={services} municipalities={municipalities} />
+            <ServicesMap centerCoordinates={ipLocation} services={services} serviceTypes={serviceTypes} municipalities={municipalities} />
             <div className="results-page__search-buttons">
                 <LocalizedButton
                     variant="hollow"
@@ -123,6 +124,7 @@ export const getServerSideProps: GetServerSideProps<IProps> = async (context) =>
                 ipLocation: location,
                 results: results.success?.data.results || [],
                 skills: results.success?.data.skills || [],
+                serviceTypes: results.success?.data.serviceTypes || [],
                 contentTypes: results.success?.data.contentTypes || [],
                 services: results.success?.data.services || [],
                 itemName: results.success?.data.itemName || '',
