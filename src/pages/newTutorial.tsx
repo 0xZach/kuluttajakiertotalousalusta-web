@@ -73,8 +73,10 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
         var iconSRC = (document.getElementsByClassName("chosen-icon").item(0)!! as HTMLImageElement).src;
 
         var cost = (document.getElementsByClassName("input-cost").item(0)!! as HTMLInputElement).value;
+        cost = "" != cost || !isNaN(parseInt(cost)) ? cost : '0';
 
         var estTime = (document.getElementsByClassName("input-time").item(0)!! as HTMLInputElement).value;
+        estTime = "" != estTime || !isNaN(parseInt(estTime)) ? estTime : '0';
 
         var desc = (document.getElementsByClassName("input-desc").item(0)!! as HTMLInputElement).value;
 
@@ -82,26 +84,29 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
 
         var link = (document.getElementsByClassName("tuto-link").item(0)!! as HTMLInputElement).value;
 
-        request({
-            method: "POST",
-            url: "/api/results/insert",
-            data: {
-                problemId: problemId,
-                itemId: itemId,
-                categoryId: categoryId,
-                contentTypeId: tutoType,
-                skillLevelId: skillLevel,
-                lang: lang,
-                tutorialName: title,
-                tutorialIntro: desc,
-                tutorialUrl: link,
-                tutorialImage: iconSRC,
-                minCostEuro: cost,
-                minTime: estTime,
-            }
-        })
+        if (title != "" && link != "") {
+            request({
+                method: "POST",
+                url: "/api/results/insert",
+                data: {
+                    problemId: problemId,
+                    itemId: itemId,
+                    categoryId: categoryId,
+                    contentTypeId: tutoType,
+                    skillLevelId: skillLevel,
+                    lang: lang,
+                    tutorialName: title,
+                    tutorialIntro: desc,
+                    tutorialUrl: link,
+                    tutorialImage: iconSRC,
+                    minCostEuro: cost,
+                    minTime: estTime,
+                }
+            })
 
-        confirm()
+            confirm()
+
+        } // TODO: had an error system
 
     }
 
