@@ -106,22 +106,17 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
     }
 
 
-    var localeSkill = skillLevels.filter(function (skill) { if (skill.lang === useAppTranslation().lang) { return skill } })
     const SkillMenu: FC = () => (
         <div className="skill-dropdown__menu">
             {
-                localeSkill.map((skill) => (
+                skillLevels.map((skill) => (
 
                     <a
                         className="skill-dropdown__item"
                         key={skill.id}
                         onClick={() => switchHead("skill_" + skill.id, "skill")}
                     >
-                        <span id={"skill_" + skill.id}>
-                            {
-                                useAppTranslation().lang === skill.lang ? skill.label : null
-                            }
-                        </span>
+                        <span id={"skill_" + skill.id}>{skill.label}</span>
                     </a>
 
                 ))
@@ -129,21 +124,16 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
         </div>
     );
 
-    var localeType = contentTypes.filter(function (type) { if (type.lang === useAppTranslation().lang) { return type } })
     const TypeMenu: FC = () => (
         <div className="type-dropdown__menu">
-            {localeType.map((type) => (
+            {contentTypes.map((type) => (
                 <a
                     className="type-dropdown__item"
                     key={type.id}
                     onClick={() => switchHead("type_" + type.id, "type")}
                 >
 
-                    <span id={"type_" + type.id}>
-                        {
-                            useAppTranslation().lang === type.lang ? type.label : ""
-                        }
-                    </span>
+                    <span id={"type_" + type.id}>{type.label}</span>
 
                 </a>
 
@@ -210,7 +200,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                             <div className="skill-dropdown__head">
                                 <span id={"skill_" + skillLevels[0].id} className="dropdown-head-text">
                                     {
-                                        lang === skillLevels[0].lang ? skillLevels[0].label : null
+                                        skillLevels[0].label
                                     }
                                 </span>
                                 <i className="filled-arrow down skill-arrow"></i>
@@ -232,7 +222,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
                             <div className="type-dropdown__head">
                                 <span id={"type_" + contentTypes[0].id} className="dropdown-head-text">
                                     {
-                                        useAppTranslation().lang === contentTypes[0].lang ? contentTypes[0].label : ""
+                                        contentTypes[0].label
                                     }
                                 </span>
                                 <i className="filled-arrow down skill-arrow"></i>
@@ -255,7 +245,7 @@ const addTutoPage: NextPage<ReferenceProps> = ({ itemId, categoryId, problemId, 
             <div className="input-and-title">
                 <LocalizedText className="input-title titles" t="TUTORIAL.TIME_ESTIMATE_TITLE" />
                 <div className="input">
-                    <input className="input-time" type="number" min="0" placeholder="1" />
+                    <input className="input-time" type="number" min="0" step="1" placeholder="1" />
                 </div>
             </div>
 
