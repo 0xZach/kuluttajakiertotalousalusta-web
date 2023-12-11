@@ -71,7 +71,7 @@ executes lint checks using `eslint`
 
 ### To Run in a Docker Container
 
-> ***Note: Docker containers must be linux architecuture based for now, we will address windows based container later.***
+> ***Note: Docker containers must be linux architecture based for now, we will address windows based container later.***
 
 #### Development:
 ```
